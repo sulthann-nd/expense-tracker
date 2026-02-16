@@ -107,6 +107,88 @@ The app follows **MVVM (Model-View-ViewModel)** architecture with clean separati
         └── TransactionRepository.kt   # Data access abstraction
 ```
 
+### **Architecture Diagram**
+
+```mermaid
+graph TD
+    %% Entry Point
+    A[MainActivity.kt] --> B[ExpenseTrackerApp.kt]
+    
+    %% App Level
+    B --> C[BottomNavigation.kt]
+    
+    %% Screens Layer
+    B --> D[DashboardScreen.kt]
+    B --> E[ExpenseListScreen.kt]
+    B --> F[AnalyticsScreen.kt]
+    B --> G[EditExpenseScreen.kt]
+    B --> H[AddExpenseScreen.kt]
+    B --> I[OnboardingPagerScreen.kt]
+    
+    %% Onboarding Sub-components
+    I --> J[OnboardingPages.kt]
+    
+    %% ViewModels Layer
+    D --> K[DashboardViewModel.kt]
+    E --> L[TransactionViewModel.kt]
+    F --> M[AnalyticsViewModel.kt]
+    G --> N[EditTransactionViewModel.kt]
+    H --> L
+    
+    %% Transaction ViewModel Factory
+    L --> O[TransactionViewModelFactory.kt]
+    
+    %% Data Layer
+    O --> P[TransactionRepository.kt]
+    K --> P
+    M --> P
+    N --> P
+    
+    P --> Q[TransactionDao.kt]
+    Q --> R[AppDatabase.kt]
+    R --> S[Converters.kt]
+    Q --> T[TransactionEntity.kt]
+    
+    %% UI Components
+    D --> U[DashboardHeader.kt]
+    D --> V[StatCard.kt]
+    D --> W[AddExpenseButton.kt]
+    
+    E --> X[ExpenseRow.kt]
+    E --> Y[CategoryFilterButton*]
+    
+    F --> Z[DonutChart.kt]
+    F --> AA[CategorySlice.kt]
+    F --> BB[LegendRow.kt]
+    F --> CC[LegendDot.kt]
+    F --> DD[DailyLineChart.kt]
+    F --> EE[MonthSelectorButton.kt]
+    F --> FF[SummaryRow.kt]
+    
+    H --> GG[OnboardingComponents.kt]
+    
+    %% Shared Components
+    EE --> HH[MonthPickerBottomSheet.kt]
+    
+    %% Notes
+    Y[CategoryFilterButton<br/>defined in ExpenseListScreen.kt]
+    
+    %% Styling
+    classDef entry fill:#e1f5fe
+    classDef app fill:#f3e5f5
+    classDef screen fill:#e8f5e8
+    classDef component fill:#fff3e0
+    classDef viewmodel fill:#fce4ec
+    classDef data fill:#e0f2f1
+    
+    class A entry
+    class B,C app
+    class D,E,F,G,H,I,J screen
+    class U,V,W,X,Y,Z,AA,BB,CC,DD,EE,FF,GG,HH component
+    class K,L,M,N,O viewmodel
+    class P,Q,R,S,T data
+```
+
 ## 🛠️ Installation & Setup
 
 ### **Prerequisites**
