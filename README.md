@@ -189,7 +189,46 @@ graph TD
     class P,Q,R,S,T data
 ```
 
-## 🛠️ Installation & Setup
+## � Key Decisions
+
+Throughout the development of ExpenseTracker, several key decisions were made to ensure modern, maintainable, and scalable code:
+
+### **UI Framework Choice**
+- **Decision**: Adopted Jetpack Compose over traditional XML layouts
+- **Rationale**: Modern declarative UI framework provides better performance, easier testing, and more maintainable code
+- **Impact**: Enabled rapid UI development with reusable composables and smooth animations
+
+### **Architecture Pattern**
+- **Decision**: Implemented MVVM (Model-View-ViewModel) architecture
+- **Rationale**: Clean separation of concerns, improved testability, and better data flow management
+- **Impact**: Easier maintenance and scalability as the app grows
+
+### **Database Solution**
+- **Decision**: Used Room database with DAO pattern
+- **Rationale**: Type-safe database operations, compile-time SQL verification, and seamless integration with LiveData/Flow
+- **Impact**: Robust data persistence with minimal boilerplate code
+
+### **Category Management**
+- **Decision**: Implemented dynamic categories using DataStore for persistence
+- **Rationale**: Allows users to customize categories while protecting standard ones
+- **Impact**: Enhanced user experience with flexible categorization
+
+### **Compose Compatibility Fixes**
+- **Decision**: Updated clickable modifier usage to match Compose 1.5+ APIs
+- **Rationale**: Resolved crashes caused by deprecated APIs in newer Compose versions
+- **Impact**: Ensured app stability and compatibility with latest Android updates
+
+### **Documentation Strategy**
+- **Decision**: Created comprehensive README with interactive Mermaid architecture diagram
+- **Rationale**: Improves developer onboarding and project maintainability
+- **Impact**: Professional presentation for GitHub repository and future contributions
+
+### **Version Management**
+- **Decision**: Used Gradle Version Catalogs for dependency management
+- **Rationale**: Centralized version control and easier dependency updates
+- **Impact**: Reduced build configuration complexity and improved maintainability
+
+## �🛠️ Installation & Setup
 
 ### **Prerequisites**
 - **Android Studio**: Arctic Fox or later
