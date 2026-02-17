@@ -20,7 +20,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,8 +46,9 @@ fun DatePickerRow(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(label, style = MaterialTheme.typography.titleMedium)
+        val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         Text(
-            text = date.toString(),
+            text = formatter.format(date),
             color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.bodyLarge
         )
