@@ -108,9 +108,9 @@ fun AnalyticsScreen(viewModel: AnalyticsViewModel) {
         AnalyticsCard {
             SummaryRow("Top Category", topCategory)
             HorizontalDivider(Modifier.padding(vertical = 8.dp), thickness = 0.5.dp)
-            SummaryRow("Average Daily Spend", "$${String.format(Locale.getDefault(), "%.2f", avgSpend)}")
+            SummaryRow("Average Daily Spend", "₹${String.format(Locale.getDefault(), "%.2f", avgSpend)}")
             HorizontalDivider(Modifier.padding(vertical = 8.dp), thickness = 0.5.dp)
-            SummaryRow("Total This Month", "$${String.format(Locale.getDefault(), "%.2f", totalAmount)}", highlight = true)
+            SummaryRow("Total This Month", "₹${String.format(Locale.getDefault(), "%.2f", totalAmount)}", highlight = true)
         }
     }
 

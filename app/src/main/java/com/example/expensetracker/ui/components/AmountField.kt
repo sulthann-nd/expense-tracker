@@ -21,7 +21,7 @@ fun AmountField(
             if (parsed <= maxAmount) onAmountChange(parsed)
         },
         label = { Text("Amount") },
-        prefix = { Text("$") },
+        prefix = { Text("₹") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
         modifier = Modifier.fillMaxWidth()
     )

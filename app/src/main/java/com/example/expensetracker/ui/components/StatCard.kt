@@ -43,7 +43,7 @@ fun StatCard(
                 color = Color.Gray
             )
             Text(
-                text = "$${String.format(Locale.getDefault(), "%.2f", amount)}",
+                text = "₹${String.format(Locale.getDefault(), "%.2f", amount)}",
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black

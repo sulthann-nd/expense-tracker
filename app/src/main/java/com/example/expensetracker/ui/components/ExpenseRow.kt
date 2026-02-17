@@ -71,7 +71,7 @@ fun ExpenseRow(
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = "$${String.format(Locale.getDefault(), "%.2f", expense.amount)}",
+                    text = "₹${String.format(Locale.getDefault(), "%.2f", expense.amount)}",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
