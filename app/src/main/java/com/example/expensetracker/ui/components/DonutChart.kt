@@ -20,6 +20,18 @@ fun DonutChart(
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        // If there's no meaningful data, show a placeholder message instead
+        if (slices.isEmpty() || slices.all { it.percent <= 0.0 }) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = "No data",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            return@Box
+        }
+
         Canvas(modifier = Modifier.fillMaxSize()) {
             val strokeWidth = size.minDimension * 0.24f
             val radius = (size.minDimension - strokeWidth) / 2

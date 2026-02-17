@@ -22,6 +22,10 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.IconButton
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,6 +50,7 @@ fun MonthPickerBottomSheet(
     onDateSelected: (year: Int, month: Int) -> Unit
 ) {
     var selectedYear by remember { mutableStateOf(currentDate.year) }
+    var yearText by remember { mutableStateOf(selectedYear.toString()) }
     var selectedMonth by remember { mutableStateOf(currentDate.monthValue) }
 
     val sheetState = rememberModalBottomSheetState()
@@ -79,19 +84,34 @@ fun MonthPickerBottomSheet(
                 modifier = Modifier.padding(bottom = 12.dp)
             )
             
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(4),
+            // Year Selector: allow any year via increment/decrement and editable field
+            val minYear = 1900
+            val maxYear = 2100
+            Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(bottom = 24.dp)
             ) {
-                val years = (2020..2030).toList()
-                items(years) { year ->
-                    YearItem(
-                        year = year,
-                        isSelected = year == selectedYear,
-                        onClick = { selectedYear = year }
-                    )
+                TextButton(onClick = { if (selectedYear > minYear) { selectedYear -= 1; yearText = selectedYear.toString() } }) {
+                    Text(text = "-")
+                }
+
+                OutlinedTextField(
+                    value = yearText,
+                    onValueChange = { v ->
+                        yearText = v
+                        val n = v.toIntOrNull()
+                        if (n != null) {
+                            selectedYear = n.coerceIn(minYear, maxYear)
+                        }
+                    },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    modifier = Modifier.size(width = 120.dp, height = 56.dp)
+                )
+
+                TextButton(onClick = { if (selectedYear < maxYear) { selectedYear += 1; yearText = selectedYear.toString() } }) {
+                    Text(text = "+")
                 }
             }
             
